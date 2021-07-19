@@ -17,29 +17,25 @@ import org.springframework.xml.xsd.XsdSchema;
 public class Config extends WsConfigurerAdapter {
 
     @Bean
-    public ServletRegistrationBean messageDispatcherServlet(ApplicationContext applicationContext)
-    {
+    public ServletRegistrationBean messageDispatcherServlet(ApplicationContext applicationContext){
         MessageDispatcherServlet servlet = new MessageDispatcherServlet();
         servlet.setApplicationContext(applicationContext);
         servlet.setTransformWsdlLocations(true);
-        return new ServletRegistrationBean(servlet, "/service/*");
+        return new ServletRegistrationBean(servlet, "/ws/*");
     }
 
-    @Bean(name = "accountDetailsWsdl")
-    public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema accountsSchema)
-    {
+    @Bean(name = "accounts")
+    public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema accountsSchema){
         DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
-        wsdl11Definition.setPortTypeName("AccountDetailsPort");
-        wsdl11Definition.setLocationUri("/service/account-details");
+        wsdl11Definition.setPortTypeName("AccountsPort");
+        wsdl11Definition.setLocationUri("/ws");
         wsdl11Definition.setTargetNamespace("http://www.sensedia.com/xml/bank");
         wsdl11Definition.setSchema(accountsSchema);
         return wsdl11Definition;
     }
 
     @Bean
-    public XsdSchema countriesSchema()
-    {
+    public XsdSchema countriesSchema(){
         return new SimpleXsdSchema(new ClassPathResource("account.xsd"));
     }
-
 }

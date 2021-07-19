@@ -1,6 +1,6 @@
 package com.soapwebservice.accounts;
 
-import com.sensedia.xml.account.Account;
+import com.sensedia.xml.bank.Account;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
@@ -9,12 +9,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Component
-public class AccountRepository {
+public class AccountRepository{
 
     private static final Map<Integer, Account> accounts = new HashMap<>();
 
     @PostConstruct
-    public void initData() {
+    public void initData(){
 
         Account account = new Account();
         account.setIdentificacao(1);
@@ -39,9 +39,8 @@ public class AccountRepository {
         accounts.put(account.getIdentificacao(), account);
     }
 
-    public Account findAccount(int identificacao) {
+    public Account findAccount(int identificacao){
         Assert.notNull(identificacao, "The Account's identification must not be null");
         return accounts.get(identificacao);
     }
-
 }

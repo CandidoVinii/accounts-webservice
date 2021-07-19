@@ -1,7 +1,7 @@
 package com.soapwebservice.accounts;
 
-import com.sensedia.xml.account.AccountDetailsRequest;
-import com.sensedia.xml.account.AccountDetailsResponse;
+import com.sensedia.xml.bank.GetAccountRequest;
+import com.sensedia.xml.bank.GetAccountResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
@@ -13,20 +13,19 @@ public class AccountEndpoint {
 
     private static final String NAMESPACE_URI = "http://www.sensedia.com/xml/bank";
 
-    private AccountRepository AccountRepository;
+    private AccountRepository accountRepository;
 
     @Autowired
-    public AccountEndpoint(AccountRepository AccountRepository) {
-        this.AccountRepository = AccountRepository;
+    public AccountEndpoint(AccountRepository accountRepository){
+        this.accountRepository = accountRepository;
     }
 
-    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "AccountDetailsRequest")
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getAccountRequest")
     @ResponsePayload
-    public AccountDetailsResponse getAccount(@RequestPayload AccountDetailsRequest request) {
-        AccountDetailsResponse response = new AccountDetailsResponse();
-        response.setAccount(AccountRepository.findAccount(request.getIdentificacao()));
+    public GetAccountResponse getAccount(@RequestPayload GetAccountRequest request){
+        GetAccountResponse response = new GetAccountResponse();
+        response.setAccount(accountRepository.findAccount(request.getIdentificacao()));
 
         return response;
     }
-
 }
