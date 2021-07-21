@@ -1,10 +1,12 @@
 package com.soapwebservice.accounts;
 
 import com.sensedia.xml.bank.Account;
+import com.sensedia.xml.bank.LISTTYPE;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
 import javax.annotation.PostConstruct;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -42,5 +44,11 @@ public class AccountRepository{
     public Account findAccount(int identificacao){
         Assert.notNull(identificacao, "The Account's identification must not be null");
         return accounts.get(identificacao);
+    }
+
+    public LISTTYPE findAllAccounts(){
+        LISTTYPE retorno = new LISTTYPE();
+        retorno.getAccounts().addAll(accounts.values());
+        return retorno;
     }
 }

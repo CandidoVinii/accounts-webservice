@@ -18,6 +18,21 @@
         </xs:complexType>
     </xs:element>
 
+    <xs:element name="getAllAccountsRequest">
+        <xs:complexType>
+            <xs:sequence />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getAllAccountsResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <!--<xs:element name="accounts" type="tns:LIST_TYPE" />-->
+                <xs:element name="list" type="tns:LIST_TYPE"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
     <xs:complexType name="Account">
         <xs:sequence>
             <xs:element name="identificacao" type="xs:int"/>
@@ -30,5 +45,17 @@
             <xs:element name="titularidade" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
+
+
+
+
+
+
+    <xs:complexType name="LIST_TYPE">
+        <xs:sequence>
+            <xs:element name="accounts" type="tns:Account" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
 
 </xs:schema>
