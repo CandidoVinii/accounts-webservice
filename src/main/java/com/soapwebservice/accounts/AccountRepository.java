@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
 import javax.annotation.PostConstruct;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,36 +18,36 @@ public class AccountRepository{
     public void initData(){
 
         Account account = new Account();
-        account.setIdentificacao(1);
-        account.setAgencia(1234);
-        account.setNumero(12345678);
-        account.setDigito(9);
-        account.setCpfcnpj("46022509041");
-        account.setInstituicao("Banco do Brasil");
-        account.setTipo("Conta corrente");
-        account.setTitularidade("Astolfo Ferreira Cruz");
-        accounts.put(account.getIdentificacao(), account);
+        account.setId(1);
+        account.setAgency(1234);
+        account.setNumber(12345678);
+        account.setDigit(9);
+        account.setDocumentNumber("46022509041");
+        account.setInstitution("Banco Original");
+        account.setType("Conta corrente");
+        account.setOwnership("Astolfo Ferreira Cruz");
+        accounts.put(account.getId(), account);
 
         account = new Account();
-        account.setIdentificacao(2);
-        account.setAgencia(4321);
-        account.setNumero(98765432);
-        account.setDigito(1);
-        account.setCpfcnpj("12345678901");
-        account.setInstituicao("Bradesco");
-        account.setTipo("Conta corrente");
-        account.setTitularidade("Afonso Claudio Pinheiro");
-        accounts.put(account.getIdentificacao(), account);
+        account.setId(2);
+        account.setAgency(4321);
+        account.setNumber(98765432);
+        account.setDigit(1);
+        account.setDocumentNumber("12345678901");
+        account.setInstitution("BMG");
+        account.setType("Conta corrente");
+        account.setOwnership("Afonso Claudio Pinheiro");
+        accounts.put(account.getId(), account);
     }
 
-    public Account findAccount(int identificacao){
-        Assert.notNull(identificacao, "The Account's identification must not be null");
-        return accounts.get(identificacao);
+    public Account findAccount(int id){
+        Assert.notNull(id, "The Account's id must not be null");
+        return accounts.get(id);
     }
 
     public LISTTYPE findAllAccounts(){
-        LISTTYPE retorno = new LISTTYPE();
-        retorno.getAccounts().addAll(accounts.values());
-        return retorno;
+        LISTTYPE ret = new LISTTYPE();
+        ret.getAccounts().addAll(accounts.values());
+        return ret;
     }
 }

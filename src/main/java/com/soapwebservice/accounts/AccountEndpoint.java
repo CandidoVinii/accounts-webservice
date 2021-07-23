@@ -26,7 +26,7 @@ public class AccountEndpoint {
     @ResponsePayload
     public GetAccountResponse getAccount(@RequestPayload GetAccountRequest request){
         GetAccountResponse response = new GetAccountResponse();
-        response.setAccount(accountRepository.findAccount(request.getIdentificacao()));
+        response.setAccount(accountRepository.findAccount(request.getId()));
 
         return response;
     }
