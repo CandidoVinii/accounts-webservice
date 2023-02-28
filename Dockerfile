@@ -1,9 +1,9 @@
-FROM adoptopenjdk/openjdk11:jre-11.0.6_10-alpine
+FROM openjdk:11-jdk
 
 WORKDIR /app
 
-COPY target/*.jar /app/app.jar
+COPY target/accounts-0.0.1-SNAPSHOT.jar /app/app.jar
 
 EXPOSE 8080
 
-CMD ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
